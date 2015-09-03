@@ -41,10 +41,4 @@
   // include main layout
   require_once("views/main.php");
 
-  // error controller - malformedURL, noController
-  // pages controller - home
-  // sorting controller - quickSort, bubbleSort
-  // readme.md
-  // mod_rewrite required
-
 ?>
