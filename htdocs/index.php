@@ -1,18 +1,10 @@
 <?php
 
   // debug
-  // error_reporting(-1);
-  // ini_set('display_errors', 'On');
+  error_reporting(-1);
+  ini_set('display_errors', 'On');
 
-  // function for creating absolute urls to circumvent navigation errors
-  function createURL($url = "") {
-    // var_dump($_SERVER);
-    // TODO: add SSL support
-
-    // set base directory
-    $base = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/';
-    echo $base . $url;
-  }
+  require_once("functions.php");
 
   // set a controller and method to call within that controller
   if(isset($_GET['url'])) {
@@ -36,6 +28,16 @@
   else {
     $controller = "pages";
     $method = "home";
+  }
+
+  /*
+    we ensured at least a controller and method were set, now
+    we need to check the controller exists here, otherwise throw an error
+  */
+
+  if(!file_exists('controllers/' . $controller . '.php')) {
+      $controller = "error";
+      $method = "nocontroller";
   }
 
   // include main layout

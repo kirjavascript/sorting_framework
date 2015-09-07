@@ -1,38 +1,69 @@
 <?php
 
-// taken from http://andrewbaxter.net/quicksort.php
+class QuickSort {
 
-function quicksort($array)
-{
-	// find array size
-	$length = count($array);
+  // name of sorting algorithm used
+  public $typename = "quicksort";
 
-	// base case test, if array of length 0 then just return array to caller
-	if($length <= 1){
-		return $array;
+  // data to be sorted
+  public $arr;
+
+	function sort()
+	{
+	 $cur = 1;
+	 $stack[1]['l'] = 0;
+	 $stack[1]['r'] = count($this->arr)-1;
+
+	 do
+	 {
+	  $l = $stack[$cur]['l'];
+	  $r = $stack[$cur]['r'];
+	  $cur--;
+
+	  do
+	  {
+	   $i = $l;
+	   $j = $r;
+	   $tmp = $this->arr[(int)( ($l+$r)/2 )];
+
+	   // partion the array in two parts.
+	   // left from $tmp are with smaller values,
+	   // right from $tmp are with bigger ones
+	   do
+	   {
+	    while( $this->arr[$i] < $tmp )
+	     $i++;
+
+	    while( $tmp < $this->arr[$j] )
+	     $j--;
+
+	    // swap elements from the two sides
+	    if( $i <= $j )
+	    {
+	     $w = $this->arr[$i];
+	     $this->arr[$i] = $this->arr[$j];
+	     $this->arr[$j] = $w;
+
+	     $i++;
+	     $j--;
+	    }
+
+	   }while( $i <= $j );
+
+
+	   if( $i < $r )
+	   {
+	    $cur++;
+	    $stack[$cur]['l'] = $i;
+	    $stack[$cur]['r'] = $r;
+	   }
+	   $r = $j;
+
+	  }while( $l < $r );
+
+	 }while( $cur != 0 );
 	}
-	else{
 
-		// select an item to act as our pivot point, since list is unsorted first position is easiest
-		$pivot = $array[0];
-
-		// declare our two arrays to act as partitions
-		$left = $right = array();
-
-		// loop and compare each item in the array to the pivot value, place item in appropriate partition
-		for($i = 1; $i < count($array); $i++)
-		{
-			if($array[$i] < $pivot){
-				$left[] = $array[$i];
-			}
-			else{
-				$right[] = $array[$i];
-			}
-		}
-
-		// use recursion to now sort the left and right lists
-		return array_merge(quicksort($left), array($pivot), quicksort($right));
-	}
 }
 
 ?>

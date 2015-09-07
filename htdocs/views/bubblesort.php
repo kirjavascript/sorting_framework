@@ -4,21 +4,23 @@
 
   <?php
 
-    $arr = array(1,6,34,7,43,9,2,4,5);
+    $this->setType("bubble");
+
+    $this->setData(array(1,6,34,7,43,9,2,4,5));
 
     echo "Array: ";
 
-    foreach($arr as $num) {
+    foreach($this->getData() as $num) {
         echo $num . " ";
     }
 
     echo "<br>";
 
-    $arr = bubblesort($arr);
+    $this->sort();
 
-    echo "Bubblesorted: ";
+    echo $this->getType().": ";
 
-    foreach($arr as $num) {
+    foreach($this->getData() as $num) {
         echo $num . " ";
     }
 

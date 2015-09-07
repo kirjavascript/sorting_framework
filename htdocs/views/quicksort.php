@@ -4,21 +4,23 @@
 
   <?php
 
-    $arr = array(1,6,34,7,43,9,2,4,5);
+    $this->setType("quick");
+
+    $this->setData(array(1,6,34,7,43,9,2,4,5));
 
     echo "Array: ";
 
-    foreach($arr as $num) {
+    foreach($this->getData() as $num) {
         echo $num . " ";
     }
 
     echo "<br>";
 
-    $arr = quicksort($arr);
+    $this->sort();
 
-    echo "Quicksorted: ";
+    echo $this->getType().": ";
 
-    foreach($arr as $num) {
+    foreach($this->getData() as $num) {
         echo $num . " ";
     }
 

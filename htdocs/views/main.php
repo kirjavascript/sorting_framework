@@ -15,7 +15,10 @@
 
 		<section>
 
-			<?php require_once("control.php"); ?>
+			<?php
+				// call controller and method
+				init($controller,$method);
+			?>
 
 		</section>
 
