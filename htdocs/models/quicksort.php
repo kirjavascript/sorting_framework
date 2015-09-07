@@ -8,7 +8,7 @@ class QuickSort {
   // data to be sorted
   public $arr;
 
-	function sort()
+	public function sort()
 	{
 	 $cur = 1;
 	 $stack[1]['l'] = 0;
